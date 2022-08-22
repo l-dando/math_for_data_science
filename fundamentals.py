@@ -19,16 +19,30 @@ print(y_with_nan)
 print(z)
 print(z_with_nan)
 
-# Measures of Central Tendency
-mean_ = sum(x) / len(x)  # find the mean of a list by dividing the sum by the length
-print(mean_)
-mean_ = statistics.mean(x)  # find the mean with a function
-print(mean_)
-mean_ = statistics.fmean(x)  # find the mean with a function faster (fmean)
-print(mean_)
+# Means
+mean = sum(x) / len(x)  # find the mean of a list by dividing the sum by the length
+print(mean)
+mean = statistics.mean(x)  # find the mean with a function
+print(mean)
+mean = statistics.fmean(x)  # find the mean with a function faster (fmean)
+print(mean)
 
-mean_ = statistics.mean(x_with_nan)  # with a nan value, these all return nan instead of the actual value
-print(mean_)
+mean = statistics.mean(x_with_nan)  # with a nan value, these all return nan instead of the actual mean value
+print(mean)
 
-mean_ = np.nanmean(x_with_nan)  # nanmean ignores nan values, this does not mean it treats it as 0
-print(mean_)
+mean = np.nanmean(x_with_nan)  # nanmean ignores nan values, this does not mean it treats it as 0
+print(mean)
+
+
+#  Weighted means
+w = [0.1, 0.2, 0.3, 0.25, 0.15]
+wmean = sum(w[i] * x[i] for i in range(len(x))) / sum(w)
+print(wmean)
+wmean = sum(x * w for (x, w) in zip(x, w)) / sum(w)
+print(wmean)
+
+w = np.array(w)
+wmean = np.average(y, weights=w)
+print(wmean)
+wmean = np.average(z, weights=w)
+print(wmean)
