@@ -1,9 +1,9 @@
 #  Calculating Descriptive Statistics
-import math
 import statistics
 import numpy as np
 import scipy.stats
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Introduction to lists, arrays and Series'
 x = [8.0, 1, 2.5, 4, 28.0]  # create list
@@ -155,5 +155,130 @@ print(cov_matrix)
 
 
 #  Correlation Coefficient
+var_x = sum((item - mean) ** 2 for item in x) / (n - 1)
+var_y = sum((item - mean) ** 2 for item in y) / (n - 1)
+std_x, std_y = var_x ** 0.5, var_y ** 0.5
+r = cov_xy / (std_x * std_y)
+print(r)
 
+#  ---------------------------------------------------------------------------------------------------------------------
 
+#  2D Data
+#  Axes
+a = np.array([[1, 1, 1],
+              [2, 3, 1],
+              [4, 9, 2],
+              [8, 27, 4],
+              [16, 1, 1]])
+print(a)
+print(np.mean(a))
+print(a.mean())
+print(np.median(a))
+print(a.var(ddof=1))
+
+print(np.mean(a, axis=0))
+print(a.mean(axis=0))
+print(np.mean(a, axis=1))
+print(a.mean(axis=1))  # same for median, var etc.
+
+print(scipy.stats.gmean(a))  # default axis = 0
+print(scipy.stats.gmean(a, axis=None))  # default axis = 0
+print(scipy.stats.gmean(a, axis=None))  # default axis = 0
+
+print(scipy.stats.describe(a, axis=None, ddof=1, bias=False))
+
+#  DataFrames
+row_names = ['first', 'second', 'third', 'fourth', 'fifth']
+col_names = ['A', 'B', 'C']
+df = pd.DataFrame(a, index=row_names, columns=col_names)
+print(df)
+print(df['B'])
+print(df['B'].mean())
+
+print(df.to_numpy())
+print(df.describe())
+print(df.describe().at['mean', 'A'])
+
+#  ---------------------------------------------------------------------------------------------------------------------
+#  Visualizing Data
+plt.style.use('ggplot')
+
+#  Box Plots
+np.random.seed(seed=0)
+x = np.random.randn(1000)
+y = np.random.randn(100)
+z = np.random.randn(10)
+
+fig, ax = plt.subplots()
+ax.boxplot((x, y, z), vert=False, showmeans=True, meanline=True, labels=('x', 'y', 'z'), patch_artist=True,
+           medianprops={'linewidth': 2, 'color': 'purple'}, meanprops={'linewidth': 2, 'color': 'red'})
+plt.draw()
+plt.savefig('boxplot.png')
+
+#  Histograms
+hist, bin_edges = np.histogram(x, bins=10)
+print(hist)
+print(bin_edges)
+
+fig, ax = plt.subplots()
+ax.hist(x, bin_edges, cumulative=False)
+ax.set_xlabel('x')
+ax.set_ylabel('Frequency')
+plt.draw()
+plt.savefig('histogram.png')
+
+fig, ax = plt.subplots()
+ax.hist(x, bin_edges, cumulative=True)
+ax.set_xlabel('x')
+ax.set_ylabel('Frequency')
+plt.draw()
+plt.savefig('histogram.png')
+
+#  Pie Charts
+x, y, z = 128, 256, 1024
+fig, ax = plt.subplots()
+ax.pie((x, y, z), labels=('x', 'y', 'z'), autopct='%1.1f%%')
+plt.draw()
+plt.savefig('pie.png')
+
+#  Bar Charts
+x = np.arange(21)
+y = np.random.randint(21, size=21)
+err = np.random.randn(21)
+fig, ax = plt.subplots()
+ax.bar(x, y, yerr=err)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+plt.draw()
+plt.savefig('bar.png')
+
+#  X-Y (Scatter) Plots
+x = np.arange(21)
+y = 5 + 2 * x + x * np.random.randn(21)
+slope, intercept, r, *__ = scipy.stats.linregress(x, y)
+line = f'Regression line: y={intercept:.2f}+{slope:.2f}x, r={r:.2f}'
+fig, ax = plt.subplots()
+ax.plot(x, y, linewidth=0, marker='s', label='Data Points')
+ax.plot(x, intercept + slope * x, label=line)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.legend(facecolor='white')
+plt.draw()
+plt.savefig('scatter.png')
+
+#  Heatmaps
+matrix = np.cov(x, y).round(decimals=2)
+fig, ax = plt.subplots()
+ax.imshow(matrix)
+ax.grid(False)
+ax.xaxis.set(ticks=(0, 1), ticklabels=('x', 'y'))
+ax.yaxis.set(ticks=(0, 1), ticklabels=('x', 'y'))
+ax.set_ylim(1.5, -0.5)
+for i in range(2):
+    for j in range(2):
+        ax.text(j, i, matrix[i, j], ha='center', va='center', color='w')
+
+plt.draw()
+plt.savefig('heatmap.png')
+
+#  plt.show()
