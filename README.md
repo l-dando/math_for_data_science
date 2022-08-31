@@ -95,3 +95,4 @@ project: from basic means to learning algorithms.
   - [ ] Random Start Values
 - [ ] Gradient Descent in Keras and TensorFlow
 <a/>
+- 
