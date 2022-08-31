@@ -32,7 +32,7 @@ project: from basic means to learning algorithms.
   - [x] Pie Charts
   - [x] Bar Charts
   - [x] X-Y (Scatter) Plots
-  - [x] Heatmaps
+  - [x] Heatmapsssss
 <a/>
 <br>
 <br>
