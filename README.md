@@ -33,6 +33,7 @@ project: from basic means to learning algorithms.
   - [x] Bar Charts
   - [x] X-Y (Scatter) Plots
   - [x] Heatmaps
+<br>
 <a/>
 
 ### 1. NumPy, SciPy, and Pandas: Correlation With Python
@@ -51,6 +52,7 @@ project: from basic means to learning algorithms.
 - [x] Visualization of Correlation
   - [x] X-Y Plots With a Regression Line
   - [x] Heatmaps of Correlation Matrices
+<br>
 <a/>
 
 ### 2. Linear Regression and Polynomial Regression in Python
@@ -66,6 +68,7 @@ project: from basic means to learning algorithms.
   - [x] R-Squared
   - [x] Predict Future Values
   - [x] Bad Fit
+<br>
 <a/>
 
 ### 3. Logistic Regression in Python
@@ -75,7 +78,6 @@ project: from basic means to learning algorithms.
 - [ ] StatsModel: Example
 - [ ] Handwriting Recognition
 - [ ] Beyond Logistic Regression in Python
-<br>
 <br>
 <a/>
 
@@ -92,4 +94,5 @@ project: from basic means to learning algorithms.
   - [ ] Momentum in Stochastic Gradient Descent
   - [ ] Random Start Values
 - [ ] Gradient Descent in Keras and TensorFlow
+<br>
 <a/>
