@@ -34,8 +34,7 @@ project: from basic means to learning algorithms.
   - [x] X-Y (Scatter) Plots
   - [x] Heatmapsssss
 <a/>
-<br>
-<br>
+
 ### 1. NumPy, SciPy, and Pandas: Correlation With Python
 - [x] Examples of Correlation
   - [x] NumPy Correlation Example
